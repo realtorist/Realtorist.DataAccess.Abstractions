@@ -12,7 +12,7 @@ namespace Realtorist.DataAccess.Abstractions
         /// </summary>
         /// <param name="type">Setting type</param>
         /// <returns>Setting</returns>
-        Task<T> GetSettingAsync<T>(string type);
+        Task<T> GetSettingAsync<T>(string type) where T : new();
 
         /// <summary>
         /// Gets settings

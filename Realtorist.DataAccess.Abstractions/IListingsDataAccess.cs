@@ -1,6 +1,6 @@
 ﻿using Realtorist.Models.Listings;
 using Realtorist.Models.Listings.Enums;
-using Realtorist.Models.Models;
+using Realtorist.Models.Geo;
 using Realtorist.Models.Pagination;
 using Realtorist.Models.Search;
 using System;
