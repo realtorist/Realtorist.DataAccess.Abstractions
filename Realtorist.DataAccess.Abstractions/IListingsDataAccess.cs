@@ -1,5 +1,4 @@
 ﻿using Realtorist.Models.Listings;
-using Realtorist.Models.Listings.Enums;
 using Realtorist.Models.Geo;
 using Realtorist.Models.Pagination;
 using Realtorist.Models.Search;
@@ -17,9 +16,9 @@ namespace Realtorist.DataAccess.Abstractions
         /// <summary>
         /// Gets External IDs of all listings in the system
         /// </summary>
-        /// <param name="source">Listing source</param>
+        /// <param name="feedId">Id of the feed</param>
         /// <returns>IDs of all listings in the system</returns>
-        Task<List<string>> GetIdsAsync(ListingSource source);
+        Task<List<string>> GetIdsAsync(Guid feedId);
 
         /// <summary>
         /// Gets all listings
@@ -72,9 +71,9 @@ namespace Realtorist.DataAccess.Abstractions
         /// <summary>
         /// Removes listings by their external IDs
         /// </summary>
-        /// <param name="source">Listing source</param>
+        /// <param name="feedId">Listing feed ID</param>
         /// <param name="externalIds">External IDs of the listings to remove</param>
-        Task RemoveListingsAsync(ListingSource source, IEnumerable<string> externalIds);
+        Task RemoveListingsAsync(Guid feedId, IEnumerable<string> externalIds);
 
         /// <summary>
         /// Removes listings by their IDs
@@ -85,9 +84,9 @@ namespace Realtorist.DataAccess.Abstractions
         /// <summary>
         /// Gets the most recent date and time of the latest listings update
         /// </summary>
-        /// <param name="source">Listing source</param>
+        /// <param name="feedId">Listing feed id</param>
         /// <returns>The most recent listing update time. Null - if no listing available</returns>
-        Task<DateTime?> GetLatestUpdateDateTimeAsync(ListingSource source);
+        Task<DateTime?> GetLatestUpdateDateTimeAsync(Guid feedId);
 
         // /// <summary>
         // /// Updates details of the listing
@@ -121,12 +120,12 @@ namespace Realtorist.DataAccess.Abstractions
         /// Updates details of the listing or adds new listing if doesn't exist
         /// </summary>
         /// <param name="externalId">ID of the listing from MLS</param>
-        /// <param name="source">Listing source</param>
+        /// <param name="feedId">Listing feed ID</param>
         /// <param name="listing">New listing details</param>
         /// <param name="saveCoordinates">Indicates wheter to save coordinates</param>
         /// <param name="saveDisabledAndFeatured">Indicates whether to save disabled and featured fields</param>
         /// <returns>True if listing was updated and not added</returns>
-        Task<bool> UpdateOrAddListingAsync(string externalId, ListingSource source, Listing listing, bool saveCoordinates = false, bool saveDisabledAndFeatured = false);
+        Task<bool> UpdateOrAddListingAsync(string externalId, Guid feedId, Listing listing, bool saveCoordinates = false, bool saveDisabledAndFeatured = false);
 
         /// <summary>
         /// Updates listing coordinates
